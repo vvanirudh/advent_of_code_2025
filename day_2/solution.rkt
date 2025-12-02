@@ -1,5 +1,6 @@
 #lang racket
 
+;; parsing input
 (define (strip string)
   (string-replace string "\n" ""))
 
@@ -9,6 +10,7 @@
 
 (define input (map (compose1 parse-range strip) (string-split (file->string "input.txt") ",")))
 
+;; puzzle 1
 (define (compute-sum-repeating-all ranges repeating-op?)
   (foldl + 0 (map (lambda (range) (compute-sum-repeating range repeating-op?)) ranges)))
 
@@ -30,6 +32,7 @@
 
 (compute-sum-repeating-all input repeating-twice?)
 
+;; puzzle 2
 (define (all-prefixes digits)
   (for/list ([i (string-length digits)])
     (substring digits 0 i)))
